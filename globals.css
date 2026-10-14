@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Thai", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Chula Engineering maroon (เลือดหมู) */
+  --color-maroon-50: #fbf4f4;
+  --color-maroon-100: #f6e4e4;
+  --color-maroon-200: #edc8c8;
+  --color-maroon-300: #dd9f9f;
+  --color-maroon-400: #c56d6d;
+  --color-maroon-500: #a84343;
+  --color-maroon-600: #8f2323;
+  --color-maroon-700: #800000;
+  --color-maroon-800: #660000;
+  --color-maroon-900: #4a0000;
+  --color-maroon-950: #2b0000;
+
+  --color-brand: #800000;
+  --color-brand-foreground: #ffffff;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-stone-50 text-slate-800 antialiased;
+}
+
+/* Thai text needs a bit more line height */
+:where(p, li, td, label, textarea) {
+  line-height: 1.65;
+}
+
+/* Floor plan */
+.room-shape {
+  cursor: pointer;
+  transition: filter 120ms ease, transform 120ms ease;
+  outline: none;
+}
+.room-shape:hover rect.room-body,
+.room-shape:focus-visible rect.room-body {
+  filter: brightness(0.96) drop-shadow(0 2px 6px rgb(0 0 0 / 0.12));
+}
+.room-shape[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+@keyframes hold-pulse {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.35; }
+}
+.room-held rect.room-body {
+  animation: hold-pulse 1.6s ease-in-out infinite;
+}
+
+@media print {
+  header, nav, .no-print { display: none !important; }
+  body { background: white; }
+}
